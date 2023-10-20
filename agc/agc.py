@@ -225,15 +225,8 @@ def main(): # pragma: no cover
     # Get arguments
     args = get_arguments()
     # Votre programme ici
-   # mon_generateur = read_fasta(args.amplicon_file, args.minseqlen)
-    #mon_generateur = dereplication_fulllength(args.amplicon_file, args.minseqlen, 1)
-    #for i in mon_generateur : 
-     #   print(i)
-
-
-    #for i in mon_generateur:
-        #print(len(i))
-    abundance_greedy_clustering(args.amplicon_file,0,0)
+    list_OTUs = abundance_greedy_clustering(args.amplicon_file, args.minseqlen, args.mincount) 
+    write_OTU(list_OTUs, args.output_file)
 
 
 if __name__ == '__main__':
