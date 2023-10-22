@@ -100,7 +100,6 @@ def read_fasta(amplicon_file: Path, minseqlen: int) -> Iterator[str]:
                 seq = seq + line_clear
         if len(seq)  >= minseqlen :
             yield seq
-    pass
 
 
 def dereplication_fulllength(amplicon_file: Path, minseqlen: int, mincount: int) -> Iterator[List]:
@@ -123,7 +122,6 @@ def dereplication_fulllength(amplicon_file: Path, minseqlen: int, mincount: int)
         #print(key)
         if dico_amplicon[key] >= mincount : 
             yield key, dico_amplicon[key]
-    pass
 
 
 
@@ -142,7 +140,6 @@ def get_identity(alignment_list: List[str]) -> float:
 
     pc_identity = (identity/longueur)*100
     return pc_identity
-    pass
 
 def abundance_greedy_clustering(amplicon_file: Path, minseqlen: int, mincount: int,chunk_size: int=0, kmer_size: int=0) -> List:
     """Compute an abundance greedy clustering regarding sequence count and identity.
@@ -171,33 +168,7 @@ def abundance_greedy_clustering(amplicon_file: Path, minseqlen: int, mincount: i
             OTU_liste.append([seq, count])
 
     return OTU_liste
-    # OTU_liste = []
-    
-    # seq_N_occ = list(dereplication_fulllength(amplicon_file,minseqlen,mincount))
-    # occ = seq_N_occ[0][1]
-    # for i in range (0,len(seq_N_occ)) : 
-    #     if i == 0 : 
-    #         OTU_liste.append(seq_N_occ[0])
-    #         print(OTU_liste)
-    #         #print(occ)
-    #         occ = seq_N_occ[0][1]
-    #         #print(len(seq_N_occ))
-    #     else:
-    #         if seq_N_occ[i][1] == occ :
-    #             OTU_liste.append(seq_N_occ[i])
-    #             print(occ)
-    #             print(OTU_liste)
-    #         elif seq_N_occ[i][1] <= occ : 
-    #             flag_occ = True
-    #             for j in range(len(OTU_liste)):
-    #                 alignement = nw.global_align(seq_N_occ[j][0], OTU_liste[j][0], gap_open=-1, gap_extend=-1, matrix=str(Path(__file__).parent / "MATCH"))
-    #                 align_id = get_identity(alignement)
-    #                 if align_id > 97 : 
-    #                     flag_occ = False
-    #             if flag_occ : 
-    #                  OTU_liste.append(seq_N_occ[i])
-    # return (OTU_liste)
-    pass
+
 
 
 def write_OTU(OTU_list: List, output_file: Path) -> None:
@@ -212,7 +183,6 @@ def write_OTU(OTU_list: List, output_file: Path) -> None:
             wrapped_sequence = textwrap.fill(seq, width=80)
             fasta_file.write(header + wrapped_sequence + "\n")
 
-    pass
 
 
 #==============================================================
